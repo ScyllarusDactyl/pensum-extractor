@@ -2438,6 +2438,38 @@ function RESET_PROGRESS() {
     localStorage.removeItem(SAVE_DATA_LOCALSTORAGE);
     location.reload();
 }
+function updateMigrate() {
+    document.getElementById('codigoMateria').remove();
+    document.getElementById('cargar_btn').remove();
+    document.getElementById('recargar_btn').remove();
+    document.querySelector('label').remove();
+    if (!currentPensumData) {
+        document.getElementById('infoWrapper').remove();
+        document.getElementById('toolboxWrapper').remove();
+        return;
+    }
+    ;
+    var node = document.getElementById('migrate');
+    var x;
+    createElement(node, 'h2', 'Para migrar: ');
+    var liNode = createElement(node, 'ol');
+    // 1.
+    x = createElement(liNode, 'li');
+    x.append('Ir a ', createSecondaryButton('💾 Guardar/Cargar selección', function () {
+        return dialog_ImportExport().show();
+    }, ['inline']), ' y exportar un archivo con su seleccion actual (', createSecondaryButton('Exportar progreso.json', downloadProgress, ['inline']), ').');
+    // 2.
+    x = createElement(liNode, 'li');
+    var a = document.createElement('a');
+    a.textContent = 'scydact.github.io/pensum-extractor/';
+    a.href = 'https://scydact.github.io/pensum-extractor/';
+    x.append('Acceder a ', a, '.');
+    // 3.
+    x = createElement(liNode, 'li');
+    x.append('En la nueva URL, click a ', createSecondaryButton('💾 Guardar/Cargar selección', function () { }, ['inline']), ', luego click en ', createSecondaryButton('Exportar progreso.json', function () { }, ['inline']), ' y subir el archivo generado anteriormente (extensión .json).');
+    // 3.
+    createElement(liNode, 'li', 'Volver a cargar un pensum (en caso de que no lo haya hecho automáticamente).');
+}
 function onWindowLoad() {
     return __awaiter(this, void 0, void 0, function () {
         var a, b, carr, input, list, _a, tempIgnored, _b;
@@ -2512,6 +2544,8 @@ function onWindowLoad() {
                     createToolbox();
                     // Do first load
                     loadPensum();
+                    // UPDATE MIGRATE WARNING!
+                    updateMigrate();
                     return [2 /*return*/];
             }
         });

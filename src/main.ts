@@ -2524,6 +2524,55 @@ function RESET_PROGRESS() {
     location.reload();
 }
 
+function updateMigrate() {
+    document.getElementById('codigoMateria').remove();
+    document.getElementById('cargar_btn').remove();
+    document.getElementById('recargar_btn').remove();
+    document.querySelector('label').remove();
+
+    if (!currentPensumData) {
+        document.getElementById('infoWrapper').remove();
+        document.getElementById('toolboxWrapper').remove();
+        return;
+    };
+
+    let node = document.getElementById('migrate');
+    let x;
+    createElement(node, 'h2', 'Para migrar: ');
+    let liNode = createElement(node, 'ol');
+
+    // 1.
+    x = createElement(liNode, 'li');
+    x.append(
+        'Ir a ',
+        createSecondaryButton('💾 Guardar/Cargar selección', () =>
+            dialog_ImportExport().show(), ['inline']),
+        ' y exportar un archivo con su seleccion actual (',
+        createSecondaryButton('Exportar progreso.json', downloadProgress, ['inline']),
+        ').');
+
+    // 2.
+    x = createElement(liNode, 'li');
+    let a = document.createElement('a');
+    a.textContent = 'scydact.github.io/pensum-extractor/';
+    a.href = 'https://scydact.github.io/pensum-extractor/';
+    x.append('Acceder a ', a, '.');
+
+    // 3.
+    x = createElement(liNode, 'li');
+    x.append(
+        'En la nueva URL, click a ',
+        createSecondaryButton('💾 Guardar/Cargar selección', () => { }, ['inline']),
+        ', luego click en ',
+        createSecondaryButton('Exportar progreso.json', () => { }, ['inline']),
+        ' y subir el archivo generado anteriormente (extensión .json).'
+    );
+
+    // 3.
+    createElement(liNode, 'li', 'Volver a cargar un pensum (en caso de que no lo haya hecho automáticamente).');
+
+}
+
 async function onWindowLoad() {
     {
         let a = document.getElementById('versionSpan');
@@ -2586,6 +2635,9 @@ async function onWindowLoad() {
 
     // Do first load
     loadPensum();
+
+    // UPDATE MIGRATE WARNING!
+    updateMigrate();
 }
 
 window.addEventListener('load', onWindowLoad);
