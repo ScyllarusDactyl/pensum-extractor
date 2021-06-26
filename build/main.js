@@ -2465,10 +2465,9 @@ function updateMigrate() {
     a.href = 'https://scydact.github.io/pensum-extractor/';
     x.append('Acceder a ', a, '.');
     // 3.
+    createElement(liNode, 'li', 'En la nueva URL, volver a cargar el pensum su carrera (entrar el codigo de carrera).');
     x = createElement(liNode, 'li');
-    x.append('En la nueva URL, click a ', createSecondaryButton('💾 Guardar/Cargar selección', function () { }, ['inline']), ', luego click en ', createSecondaryButton('Exportar progreso.json', function () { }, ['inline']), ' y subir el archivo generado anteriormente (extensión .json).');
-    // 3.
-    createElement(liNode, 'li', 'Volver a cargar un pensum (en caso de que no lo haya hecho automáticamente).');
+    x.append('Para volver a cargar sus selecciones, click a ', createSecondaryButton('💾 Guardar/Cargar selección', function () { }, ['inline']), ', luego click en ', createSecondaryButton('Exportar progreso.json', function () { }, ['inline']), ' y subir el archivo generado anteriormente (extensión .json).');
 }
 function onWindowLoad() {
     return __awaiter(this, void 0, void 0, function () {

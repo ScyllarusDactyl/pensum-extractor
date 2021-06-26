@@ -2559,18 +2559,18 @@ function updateMigrate() {
     x.append('Acceder a ', a, '.');
 
     // 3.
+    createElement(liNode, 'li', 'En la nueva URL, volver a cargar el pensum su carrera (entrar el codigo de carrera).');
+
     x = createElement(liNode, 'li');
     x.append(
-        'En la nueva URL, click a ',
+        'Para volver a cargar sus selecciones, click a ',
         createSecondaryButton('💾 Guardar/Cargar selección', () => { }, ['inline']),
         ', luego click en ',
         createSecondaryButton('Exportar progreso.json', () => { }, ['inline']),
         ' y subir el archivo generado anteriormente (extensión .json).'
     );
 
-    // 3.
-    createElement(liNode, 'li', 'Volver a cargar un pensum (en caso de que no lo haya hecho automáticamente).');
-
+    
 }
 
 async function onWindowLoad() {
