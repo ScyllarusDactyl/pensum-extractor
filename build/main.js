@@ -2439,13 +2439,13 @@ function RESET_PROGRESS() {
     location.reload();
 }
 function updateMigrate() {
-    document.getElementById('codigoMateria').remove();
-    document.getElementById('cargar_btn').remove();
-    document.getElementById('recargar_btn').remove();
-    document.querySelector('label').remove();
+    document.getElementById('codigoMateria').classList.add('hidden');
+    document.getElementById('cargar_btn').classList.add('hidden');
+    document.getElementById('recargar_btn').classList.add('hidden');
+    document.querySelector('label').classList.add('hidden');
     if (!currentPensumData) {
-        document.getElementById('infoWrapper').remove();
-        document.getElementById('toolboxWrapper').remove();
+        document.getElementById('infoWrapper').classList.add('hidden');
+        document.getElementById('toolboxWrapper').classList.add('hidden');
         return;
     }
     ;
